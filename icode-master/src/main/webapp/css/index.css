@@ -1,0 +1,338 @@
+body{
+	padding: 0px;
+	margin: 0px;
+	font-family: 'Helvetica Neue', 'Microsoft Yahei';
+}
+.pager-main{
+	margin:0px;
+	padding: 0px;
+	width: 100%;
+	min-height:760px;
+}
+.pager-top{
+	background-color: #FFFFFF;
+	overflow: hidden;
+	border-bottom: 1px solid #EFEFEF;
+}
+.pager-top-container{
+	margin: 0px auto;
+	width: 1140px;
+	height: 60px;
+	padding: 0px 15px;
+}
+.pager-center{
+	padding-top: 15px;
+	padding-bottom: 0px;
+	background-color: #FAFAFA;
+	/** min-height: 600px;**/
+	overflow: hidden;
+}
+.pager-card-list{
+	margin: 0px auto;
+	width: 1140px;
+	overflow: hidden;
+}
+.pager-card{
+	min-height: 300px;
+	overflow: hidden;
+	background-color: #FFFFFF;
+	border: 0 none;
+	background-color: #fff;
+	border-radius: 2px;
+	box-shadow: rgba(0,0,0,0.0470588) 0 2px 3px 0;
+}
+header {
+	padding: 10px 15px 10px 5px;
+	font-size: 20px;
+	line-height: 30px;
+	border-bottom: 1px solid #EFEFEF;
+}
+.card-header {
+	color: #808080;
+	font-size: 16px;
+	margin:0px;
+	overflow:hidden;
+}
+table.editTable{
+	margin: 0px auto;
+	width: 1109px;
+	border: 1px solid #ABADB3;
+	background: #fff;
+	border-collapse:collapse;
+	table-layout:fixed;
+	margin-bottom: 20px;
+}
+table.editTable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #EFEFEF;
+	background-color: #F9F9F9;
+	font-weight: normal;
+	text-align: left;
+}
+table.editTable td {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #F0F0F0;
+	padding: 4px;
+	height: 28px;
+	position: relative;
+	text-align: center;
+	vertical-align: center;
+}
+.classInput{
+	float: left;height:38px;
+	font-family: 'Helvetica Neue', 'Microsoft Yahei';
+	font-size: 16px;margin-right: 10px;
+	border-radius: 4px;outline:medium;
+	border: 1px solid; border-color: #CCC #EEE #EEE #CCC;
+	padding: 0px 5px;
+	font-weight:bold;
+}
+.classNameInput{
+	color: #C5060B;
+	width:120px;
+}
+.packpageNameInput{
+	color: #A71D5D;
+	width:180px;
+}
+.attrInput{
+	border:0px;outline:medium;width:100%;height:100%;
+	font-family:'Microsoft Yahei';
+	font-size: 20px;
+	color: #2769B1;
+}
+.commentInput{
+	border:0px;outline:medium;width:100%;height:100%;
+	font-family:'Microsoft Yahei';
+	font-size: 20px;
+	color: #06960E;
+}
+.lengthInput{
+	border:0px;outline:medium;width:100%;height:100%;
+	font-family:'Microsoft Yahei';
+	font-size: 20px;
+	color: #A535AE;
+}
+.firstd{text-align: center;}
+.selectInput{
+	border:0px;outline:medium;
+	width:100%;height:100%;
+	font-family: 'Helvetica Neue', 'Microsoft Yahei';
+	font-size: 20px;
+	color: #2D364B;
+	z-index: -1;
+}
+.selectInputRight{
+	position: absolute;
+	right: 01px;top: 0px;
+	height: 100%;
+	width: 24px;
+	background-color: #FFFFFF;
+}
+.toolbar{
+	margin-left: 15px;
+	width: 1107px;
+	height: 40px;
+	padding: 10px 0px;
+}
+.toolbar-btn{
+	line-height: 39px;
+	padding-left: 34px;
+	padding-right: 10px;
+	cursor: pointer;
+	float: left;
+	background-color: #FAFAFA;
+	margin-right: 10px;
+	border-radius: 2px;
+}
+.toolbar-btn:hover{
+	background-color: #E9E9E9;
+}
+.add_icon{
+	background:url("../img/add_icon.png") 5px 8px no-repeat;
+	background-color: #FAFAFA;
+}
+.delete_icon{
+	background:url("../img/delete_icon.png") 5px 8px no-repeat;
+	background-color: #FAFAFA;
+}
+.primarykey_icon{
+	background:url("../img/primarykey.png") 5px 8px no-repeat;
+	background-color: #FAFAFA;
+}
+.moveup_icon{
+	background:url("../img/move_up.png") 5px 8px no-repeat;
+	background-color: #FAFAFA;
+}
+.movedown_icon{
+	background:url("../img/move_down.png") 5px 8px no-repeat;
+	background-color: #FAFAFA;
+}
+.generate_icon{
+	background:url("../img/code_download.png") 5px 8px no-repeat;
+	background-color: #1ABC9C;
+	color:#FFF;
+}
+.generate_icon:hover{
+	background-color: #19BC9C;
+	color: #FFF;
+}
+.logo{
+	width:159px;
+	float:left;
+	margin-top: 7px;
+}
+.nav-ul,.login-ul{
+	margin: 0px;
+	padding: 0px;
+	list-style-type:none;
+	width: 600px;
+	overflow: hidden;
+}
+.nav-ul > li > a,.login-ul > li > a{
+	float:left;
+	padding:20px;
+	text-decoration: none;
+	color: #666;
+  	border-left: 1px solid #fff;
+  	border-right: 1px solid #fff;
+}
+.nav-ul > li > a:hover,.login-ul > li > a:hover{
+	background-color: transparent;
+	border-color: #ebebeb;
+	background-color: #fafafa;
+}
+.login-ul{
+	margin-left:0px;
+	width:200px;
+	float:right;
+}
+.nav-ul{
+	float:left;
+	margin-left:100px;
+}
+.bind-crumbs{
+  height: 70px;
+  padding: 10px 0;
+  background-color: #363f4d;
+}
+.title-container{
+	width: 1140px;
+	margin: 0px auto;
+}
+.title-item{
+  position: relative;
+  line-height: 48px;
+  float: left;
+  width: 204px;
+  padding-left: 58px;
+  color: #fff;
+  font-size: 24px;
+  background-repeat: no-repeat;
+  margin-top: 11px;
+}
+.icon-code{
+	background-image: url('../img/iconfont-daima.png');
+	background-size:48px 48px;
+}
+.sub-title{
+	background-color: #fff;
+	height: 60px;
+}
+.sub-title .menu {
+  padding: 0;
+  margin: 0;
+}
+.sub-title .menu {
+  padding: 0;
+  margin: 0;
+}
+.sub-title .menu li {
+  list-style: none;
+  display: inline-block;
+  position: relative;
+}
+.sub-title .menu li.nav-current {
+  border-bottom: 2px solid #1ABC9C;
+  margin-bottom: -2px;
+}
+.sub-title .menu li.nav-current a{
+  color: #5ecfba;
+}
+.sub-title .menu li a {
+  color: #505050;
+  line-height: 58px;
+  display: block;
+  padding: 0px 15px;
+  text-decoration: none;
+}
+.sub-title .menu li:hover > a {
+  color: #5ecfba;
+  text-decoration: none;
+}
+.card-content{
+	overflow: hidden;
+	padding: 10px;
+	padding-top: 0px;
+}
+.card-left{
+	float: left;
+	width: 553px;
+	overflow: hidden;
+}
+.card-right{
+	float: left;
+	width: 553px;
+	margin-left: 10px;
+	overflow: hidden;
+}
+.sql-content{
+	position: relative;
+	overflow-y:visible;
+	border: 1px solid #1ABC9C;
+}
+.class-content{
+	min-height: 240px;
+	overflow: hidden;
+	border: 1px solid #F5F5F5;
+	background-color: #F5F5F5;
+}
+.sql-textarea{
+	font: normal normal normal 14px/normal Arial;
+	width: 506px;
+	height: 224px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 8px;
+	padding-right:35px;
+	margin: 0;
+  	outline: none;
+  	white-space: pre-wrap;
+  	background-color: transparent;
+    border: none;
+    resize: none;
+    color: #BCBCBC;
+    display: block;
+}
+.textarea-clear-btn {
+  text-decoration: none;
+  color: #666;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  margin: 0px;
+  display: inline;
+  width: 25px;
+  height: 25px;
+  background: url(../img/icon_32a29ff4.png) 0 -200px no-repeat;
+}
+.textarea-clear-btn:hover {
+  background-position: -50px -200px;
+}
+a {
+  text-decoration: none;
+  color: #666;
+}

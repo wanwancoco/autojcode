@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.icode.sys.persistence.SysUserMapper" >
+
+  <select id="userWithId" resultType="SysUser" >
+    select `tbid` ,`username` ,`password` ,`type` ,`nick` ,`headimg` ,`telephone` ,`email` ,`sex` ,`home` ,`live` ,`signname` ,`loginx` ,`loginy` ,`mispublish` ,`execute` ,`apply` ,`status`  from sys_user where  `tbid` = #{tbid}
+  </select>
+  
+  <select id="userWithUsername" resultType="SysUser" >
+    select `tbid` ,`username` ,`password` ,`type` ,`nick` ,`headimg` ,`telephone` ,`email` ,`sex` ,`home` ,`live` ,`signname` ,`loginx` ,`loginy` ,`mispublish` ,`execute` ,`apply` ,`status`  from sys_user where  `username` = #{username}
+  </select>
+  
+  <select id="usersWithType" resultType="SysUser">
+  	select u.`tbid` ,u.`username` ,u.`password` ,u.`type` ,u.`nick` ,u.`headimg` ,u.`telephone` ,u.`email` ,u.`sex` ,u.`home` ,
+	 u.`live` ,u.`signname` ,u.`loginx` ,u.`loginy` ,u.`mispublish` ,u.`execute` ,u.`apply` ,u.`status` ,d.realname
+	from sys_user u LEFT JOIN sys_user_detail d on u.tbid = d.tbid where u.`type` = #{type}
+  </select>
+  
+  <select id="userWithRole" resultType="SysUser">
+  	select u.`tbid` ,u.`username` ,u.`password` ,u.`type` ,u.`nick` ,u.`headimg` ,u.`telephone` ,u.`email` ,u.`sex` ,u.`home` ,
+	 u.`live` ,u.`signname` ,u.`loginx` ,u.`loginy` ,u.`mispublish` ,u.`execute` ,u.`apply` ,u.`status`,d.realname
+	from sys_user u,sys_user_detail d ,sys_user_role r where u.tbid = r.userid and u.tbid = d.tbid and roleid = #{roleid}
+  </select>
+  
+  <insert id="insert" parameterType="com.icode.sys.domain.SysUser" useGeneratedKeys="true" >
+    insert into sys_user (`username` ,`password` ,`type` ,`nick` ,`headimg` ,`telephone` ,`email` ,`sex` ,`home` ,`live` ,`signname` ,`loginx` ,`loginy` ,`mispublish` ,`execute` ,`apply` ,`status` ) values (#{username},#{password},#{type},#{nick},#{headimg},#{telephone},#{email},#{sex},#{home},#{live},#{signname},#{loginx},#{loginy},#{mispublish},#{execute},#{apply},#{status})
+  </insert>
+  
+  <delete id="deleteByPrimaryKey">
+    delete from sys_user where  `tbid` = #{tbid}
+  </delete>
+  
+  <update id="updateByPrimaryKey" parameterType="com.icode.sys.domain.SysUser" >
+    update sys_user set `username` = #{username},`password` = #{password},`type` = #{type},`nick` = #{nick},`headimg` = #{headimg},`telephone` = #{telephone},`email` = #{email},`sex` = #{sex},`home` = #{home},`live` = #{live},`signname` = #{signname},`loginx` = #{loginx},`loginy` = #{loginy},`mispublish` = #{mispublish},`execute` = #{execute},`apply` = #{apply},`status` = #{status} where  `tbid` = #{tbid}
+  </update>
+  
+  <update id="updateRealName" parameterType="com.icode.sys.domain.SysUser" >
+    update sys_user_detail set `realname` = #{realname} where `tbid` = #{tbid}
+  </update>
+  
+  <update id="updateType" parameterType="com.icode.sys.domain.SysUser" >
+    update sys_user set `type` = 0 where `tbid` = #{tbid}
+  </update>
+  
+</mapper>

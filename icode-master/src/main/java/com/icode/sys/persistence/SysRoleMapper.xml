@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.icode.sys.persistence.SysRoleMapper" >
+ 
+  <select id="selectByPrimaryKey" resultType="com.icode.sys.domain.SysRole" >
+    select `tbid` ,`rolename` ,`data_flag`  from sys_role where  `tbid` = #{tbid}
+  </select>
+  
+  <select id="selectAll" resultType="com.icode.sys.domain.SysRole">
+    select `tbid` ,`rolename` ,`data_flag`  from sys_role order by `tbid` desc
+  </select>
+  
+  <select id="rolesWithUser" resultType="com.icode.sys.domain.SysRole">
+    select `tbid` ,`rolename` ,`data_flag`  from sys_role where `tbid` in
+ 	(select `roleid` from sys_user_role where `userid` = #{userid})
+  </select>
+  
+  <insert id="insert" parameterType="com.icode.sys.domain.SysRole" useGeneratedKeys="true"  keyProperty="tbid" >
+    insert into sys_role (`rolename` ,`data_flag` ) values (#{rolename},#{data_flag})
+  </insert>
+  
+  <insert id="insertRoleUser" parameterType="com.icode.sys.domain.SysUserRole" useGeneratedKeys="true" >
+    insert into sys_user_role (`userid` ,`roleid` ) values (#{userid},#{roleid})
+  </insert>
+  
+  <insert id="inserRoleMenu" parameterType="com.icode.sys.domain.SysRoleMenu" useGeneratedKeys="true" >
+    insert into sys_role_menu (`menuid` ,`roleid` ) values (#{menuid},#{roleid})
+  </insert>
+  
+  <delete id="deleteBatch">
+    delete from sys_role where `tbid` in
+      <foreach collection="list" item="tbid"  open="(" separator="," close=")">
+	    #{tbid}
+      </foreach>
+  </delete>
+  
+  <delete id="deleteRoleUser">
+    delete from sys_user_role where `roleid` = #{tbid}
+  </delete>
+  
+  <delete id="deleteRoleUsers">
+    delete from sys_user_role where `roleid` in
+      <foreach collection="list" item="tbid"  open="(" separator="," close=")">
+	    #{tbid}
+      </foreach>
+  </delete>
+  
+  <delete id="deleteRoleMenu">
+    delete from sys_role_menu where `roleid` = #{tbid}
+  </delete>
+  
+  <delete id="deleteRoleMenus">
+    delete from sys_role_menu where `roleid` in
+      <foreach collection="list" item="tbid"  open="(" separator="," close=")">
+	    #{tbid}
+      </foreach>
+  </delete>
+  
+  <update id="updateByPrimaryKey" parameterType="com.icode.sys.domain.SysRole" >
+    update sys_role set `rolename` = #{rolename} where  `tbid` = #{tbid}
+  </update>
+  
+</mapper>

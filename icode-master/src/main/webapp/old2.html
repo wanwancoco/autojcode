@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>AutoJCode-Java代码在线自动生成工具</title>
+<meta content="AutoJCode-Java是一款简洁、快速、高效的Java代码生成工具，能帮助JavaWeb程序员快速完成基础编码，把精力和时间专注于业务逻辑实现上。让程序员不再编写重复的增删改查代码。" name="description" />
+<meta content="Java代码生成,AutoJCode,java 在线 ide,Java自动代码生成,代码生成,软件设计,类设计" name="keywords" />
+<link rel="stylesheet" type="text/css" href="tools/css/index.css">
+</style>
+</head>
+<body>
+	<div class="pager-main">
+		<div class="pager-top">
+			<div class="pager-top-container">
+				<img src="tools/img/logo.png" style="width:159px;">
+			</div>
+		</div>
+		<div class="pager-center">
+			<div class="pager-card-list">
+				<div class="pager-card">
+					<header class="card-header">类的设计</header>
+					<div class="toolbar">
+						<div id="add_btn" class="toolbar-btn add_icon">添加属性</div>
+						<div id="delete_btn" class="toolbar-btn delete_icon">删除属性</div>
+						<div id="primary_btn" class="toolbar-btn primarykey_icon">设置主键</div>
+
+						<div id="up_btn" class="toolbar-btn moveup_icon">上移</div>
+						<div id="down_btn" class="toolbar-btn movedown_icon">下移</div>
+						<input type="text" id="classNameInput" value="Test" class="classInput classNameInput">
+						<input type="text" id="packageNameInput" value="com.team" class="classInput packpageNameInput">
+
+						<div id="generate_btn" class="toolbar-btn generate_icon">生成项目代码</div>
+					</div>
+					<table id="attrTable" class="editTable">
+						<tr>
+							<th style="width:30px;"></th>
+							<th>属性名</th>
+							<th style="width:160px;overflow:hidden;">类型</th>
+							<th>注释</th>
+							<th style="width:85px;">长度</th>
+							<th style="width:90px;">允许NULL</th>
+							<th style="width:50px;">主键</th>
+						</tr>
+						<tr id="attrRow_1" class="attrRow" index="1">
+							<td><img id="triangle_1" class="triangle" src="tools\img\triangle.png" ></td>
+							<td>
+								<input id="attrName_1" type="text" index="1" name="attrName" class="attrInput">
+							</td>
+							<td>
+								<select id="attrType_1" class="selectInput" name="attrType" index="1"> 
+									<option selected>String</option>
+									<option>Integer</option>
+									<option>Long</option>
+									<option>Byte</option>
+									<option>Float</option>
+									<option>Date</option>
+								</select>
+								<div id="attrTypeDiv_1" class="selectInputRight"></div>
+							</td>
+							<td><input id="attrComment_1" type="text" name="attrComment" index="1" class="commentInput"></td>
+							<td><input id="attrLength_1" type="text" name="attrLength" value="255"
+                                   onkeyup="this.value=this.value.replace(/\D/g,'')" 
+                                   onafterpaste="this.value=this.value.replace(/\D/g,'')" 
+                                   maxlength="8" index="1" class="lengthInput"></td>
+							<td class="nullTd" index="1">
+								<input id="attrNull_1" type="hidden" value="true">
+								<img src="tools\img\checkbox.png"></td>
+							<td class="primaryTd" index="1">
+								<input id="attrPrimary_1" type="hidden" value="false">
+								<img src="tools\img\primarykey.png" style="display:none;"></td>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+		</div>
+		<div class="pager-center" style="padding-bottom:60px;">
+			<div class="pager-card-list">
+				<div class="pager-card">
+					<header class="card-header">生成的代码</header>	
+					<div class="codeDiv">
+					<iframe id="codeFrame" 
+					src="http://www.baidu.com" 
+					width="100%" height="500px" marginheight="0" marginwidth="0" frameborder="0" scrolling="yes"></iframe>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+<script type="text/javascript" src="tools/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="tools/js/jquery.tmpl.js"></script>
+<script id="rowTemplate" type="text/x-jquery-tmpl">
+<tr id="attrRow_{{= index}}" class="attrRow" style="background-color#ff0000;" index="{{= index}}">
+	<td><img id="triangle_{{= index}}" class="triangle" src="tools\img\triangle.png" ></td>
+	<td>
+		<input id="attrName_{{= index}}" type="text" index="{{= index}}" name="attrName" class="attrInput">
+	</td>
+	<td>
+		<select id="attrType_{{= index}}" name="attrType" class="selectInput" index="{{= index}}"> 
+			<option selected>String</option>
+			<option>Integer</option>
+			<option>Long</option>
+			<option>Byte</option>
+			<option>Float</option>
+			<option>Date</option>
+		</select>
+		<div id="attrTypeDiv_{{= index}}" class="selectInputRight"></div>
+	</td>
+	<td><input id="attrComment_{{= index}}" type="text" name="attrComment commentInput" index="{{= index}}" class="commentInput"></td>
+	<td><input id="attrLength_{{= index}}" type="text" name="attrLength" index="{{= index}}" 
+		class=" lengthInput" maxlength="8" value="255"
+		onkeyup="this.value=this.value.replace(/\D/g,'')" 
+        onafterpaste="this.value=this.value.replace(/\D/g,'')" ></td>
+	<td class="nullTd" index="{{= index}}">
+		<input id="attrNull_{{= index}}" type="hidden" value="true">
+		<img src="tools\img\checkbox.png"></td>
+	<td class="primaryTd" index="{{= index}}">
+		<input id="attrPrimary_{{= index}}" type="hidden" value="false">
+		<img src="tools\img\primarykey.png" style="display:none;"></td>
+</tr>
+</script>
+<script type="text/javascript">
+
+	var rowIndex = 1;
+	var curIndex = 1;
+	function clickRow(){
+		var index = $(this).attr("index");
+		curIndex = index;
+		$(".triangle").hide();
+		$("#triangle_"+index).show();
+
+		$(".attrRow").css("background-color","#FFF");
+		$(".attrInput").css("background-color","#FFF");
+		$(".lengthInput").css("background-color","#FFF");
+		$(".commentInput").css("background-color","#FFF");
+		$(".selectInput").css("background-color","#FFF");
+		$(".selectInputRight").css("background-color","#FFF");
+
+		$(this).css("background-color","#EEF6FF");
+		
+		$("#attrName_"+index).css("background-color","#EEF6FF");
+		$("#attrComment_"+index).css("background-color","#EEF6FF");
+		$("#attrLength_"+index).css("background-color","#EEF6FF");
+
+		$("#attrType_"+index).css("background-color","#EEF6FF");
+		$("#attrTypeDiv_"+index).css("background-color","#EEF6FF");
+	}
+	var clickNullTd = function(){
+		var i = $(this).attr("index");
+		var val = $("#attrNull_"+i).val();
+
+		if(val == 'false'){
+			$("#attrNull_"+i).val("true");
+			$(this).find('img').show();
+		}else{
+			$("#attrNull_"+i).val("false");
+			$(this).find('img').hide();
+		}
+	}
+	var clickPrimaryTd = function(){
+		var i = $(this).attr("index");
+		var val = $("#attrPrimary_"+i).val();
+
+		if(val == 'false'){
+			$("#attrPrimary_"+i).val("true");
+			$(this).find('img').show();
+		}else{
+			$("#attrPrimary_"+i).val("false");
+			$(this).find('img').hide();
+		}
+	}
+	/**添加属性行**/
+	var addRow = function(){
+
+		rowIndex++;
+		$(".triangle").hide();
+		var tabs = [ {
+			index:rowIndex
+		}];
+		$("#rowTemplate").tmpl(tabs).appendTo("#attrTable");
+		curIndex = rowIndex;
+
+		//重新绑定事件
+		$(".attrRow").unbind("click");
+		$(".attrRow").bind("click", clickRow); 
+
+		$(".nullTd").unbind("click");
+		$(".nullTd").bind("click", clickNullTd);
+
+		$(".primaryTd").unbind("click");
+		$(".primaryTd").bind("click", clickPrimaryTd);
+
+		$(".attrInput").unbind("blur");
+		$(".attrInput").bind("blur",blurAttrInput);
+
+		$(".selectInput").unbind("change");
+		$(".selectInput").bind("change",changeAttrType);
+
+		//清除一下上一个选择的行背景色
+		$(".attrRow").css("background-color","#FFF");
+		$(".attrInput").css("background-color","#FFF");
+		$(".lengthInput").css("background-color","#FFF");
+		$(".commentInput").css("background-color","#FFF");
+		$(".selectInput").css("background-color","#FFF");
+		$(".selectInputRight").css("background-color","#FFF");
+	}
+	/**删除属性行**/
+	var delRow = function(){
+		
+		var i = $("#attrRow_"+curIndex).next().attr("index");
+		if(!i){
+			i = $("#attrRow_"+curIndex).prev().attr("index");
+		}
+		//删除当前行
+		$("#attrRow_"+curIndex).remove();
+		curIndex = i;
+
+		//移动箭头到下一行
+		$(".triangle").hide();
+		$("#triangle_"+curIndex).show();
+	}
+	/**设置主键**/
+	var primaryRow = function(){
+		var i = $("#attrRow_"+curIndex).attr("index");
+		var val = $("#attrPrimary_"+i).val();
+
+		if(val == 'false'){
+			$("#attrPrimary_"+i).val("true");
+			$("#attrPrimary_"+i).next().show();
+		}else{
+			$("#attrPrimary_"+i).val("false");
+			$("#attrPrimary_"+i).next().hide();
+		}
+	}
+	/**上下移动行**/
+	var upRow = function(){
+		if($("#attrRow_"+curIndex).prev().attr("index")){
+			$("#attrRow_"+curIndex).prev().before($("#attrRow_"+curIndex));
+		}
+	}
+	var downRow = function(){
+		if($("#attrRow_"+curIndex).next().attr("index")){
+			$("#attrRow_"+curIndex).next().after($("#attrRow_"+curIndex));
+		}
+	}
+	/**生成代码**/
+	var generateCode = function(){
+		
+		var className = $.trim($("#classNameInput").val());
+		var packageName = $.trim($("#packageNameInput").val());
+		if(className == ''){
+			alert('类名不能为空！');
+			return false;
+		}
+		if(packageName == ''){
+			alert('包名不能为空！');
+			return false;
+		}
+		var isprimary = 0;
+		var iserror = 0;
+		var urlstr = 'code/code_generate.action?1=1';
+	    $("#attrTable tr").each(function(){   
+            var i = $(this).attr("index");
+            if(i){
+            	var attrName = $.trim($("#attrName_"+i).val());
+            	if(attrName == ''){
+            		iserror = 1;
+            	}
+            	urlstr += '&attrName=' + attrName;
+				urlstr += '&attrComment=' + $("#attrComment_"+i).val();
+				urlstr += '&attrLength=' + $("#attrLength_"+i).val();
+				urlstr += '&attrType=' + $("#attrType_"+i).val();
+				urlstr += '&attrNull=' + $("#attrNull_"+i).val();
+
+				var attrPrimary = $("#attrPrimary_"+i).val();
+				if(attrPrimary == "true"){
+					isprimary = 1;
+				}
+				urlstr += '&attrPrimary=' + attrPrimary;
+            }
+        });
+        if (iserror == 1) {
+        	alert("属性名不能为空！");
+        	return false;
+        }
+        if(isprimary == 0){
+        	alert("请设置主键！");
+        	return false;
+        }
+        
+        $("#codeFrame").attr("src",urlstr);
+	}
+	var changeAttrType = function(){
+		var i = $(this).attr("index");
+		var val = $(this).val();
+		if(val == 'String'){
+			$("#attrLength_"+i).val(255);
+		}else if(val == 'Integer'){
+			$("#attrLength_"+i).val(11);
+		}else if(val == 'Long'){
+			$("#attrLength_"+i).val(11);
+		}else if(val == 'Byte'){
+			$("#attrLength_"+i).val(4);
+		}else if(val == 'Float'){
+			$("#attrLength_"+i).val(0);
+		}else if(val == 'Date'){
+			$("#attrLength_"+i).val(0);
+		}
+	}
+	/**翻译后加注释**/
+	var blurAttrInput = function(){
+		var v1 = $(this).val();
+
+		if(v1 != ''){
+
+			/* $.ajax({
+		        url:'http://fanyi.youdao.com/openapi.do',
+		        type:'GET',
+		        data:{keyfrom:'autojcode',key:'1670955272',type:'data',doctype:'json',version:'1.1',q:v1},
+		        dataType:'jsonp',
+		        jsonp:'callback',
+		        success:function(data){
+		           
+		        }
+		    });*/
+
+		}
+	}
+	/**绑定事件**/
+	var bindEvent = function() {
+
+		$("#add_btn").click(addRow);
+
+		$("#delete_btn").click(delRow);
+
+		$("#primary_btn").click(primaryRow);
+
+		$("#up_btn").click(upRow);
+		$("#down_btn").click(downRow);
+
+		$("#generate_btn").click(generateCode);
+
+		$(".attrRow").bind("click", clickRow);
+
+		$(".nullTd").bind("click", clickNullTd);
+
+		$(".primaryTd").bind("click", clickPrimaryTd);
+
+		$(".attrInput").bind("blur",blurAttrInput);
+
+		$(".selectInput").bind("change",changeAttrType);
+
+	}
+
+	$(function() {
+
+		bindEvent();
+	});
+</script>
+
+</body>
+</html>

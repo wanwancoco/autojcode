@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.icode.sys.persistence.SysMenuMapper" >
+
+  <insert id="insert" parameterType="SysMenu" useGeneratedKeys="true" >
+    insert into sys_menu (`name` ,`url` ,`isparent` ,`parentid` ,`index` ,`type` ,`show` ) values (#{name},#{url},#{isparent},#{parentid},#{index},#{type},#{show})
+  </insert>
+  
+  <delete id="deleteByPrimaryKey">
+    delete from sys_menu where  `tbid` = #{tbid}
+  </delete>
+  
+  <update id="updateByPrimaryKey" parameterType="SysMenu" >
+    update sys_menu set `name` = #{name},`url` = #{url},`isparent` = #{isparent},`parentid` = #{parentid},`index` = #{index},`type` = #{type},`show` = #{show} where  `tbid` = #{tbid}
+  </update>
+  
+  <select id="menuWithTbid" resultType="SysMenu" >
+    select `tbid` ,`name` ,`url` ,`isparent` ,`parentid` ,`index` ,`type` ,`show`,`icon`,`sysflag`  from sys_menu where `tbid` = #{tbid}
+  </select>
+  
+  <select id="menuParentWithTbid" resultType="SysMenu" >
+    select `tbid` ,`name` ,`url` ,`isparent` ,`parentid` ,`index` ,`type` ,`show`,`icon`,`sysflag`  from sys_menu where  `tbid` = (
+    	select `parentid` from sys_menu where `tbid` = #{menuid}
+    )
+  </select>
+  
+  <select id="menusWithLeaf" resultType="SysMenu" >
+    select `tbid` ,`name` ,`url` ,`isparent` ,`parentid` ,`index` ,`type` ,`show`,`icon`,`sysflag`  from sys_menu where  `isparent` = 0 and `type` = 1
+  </select>
+  
+  <select id="menusWithParent" resultType="SysMenu" >
+    select `tbid` ,`name` ,`url` ,`isparent` ,`parentid` ,`index` ,`type` ,`show`,`icon`,`sysflag`  from sys_menu where  `parentid` = #{tbid} order by `index` desc
+  </select>
+  
+  <select id="menusWithParentUser" resultType="SysMenu" >
+    select `tbid` ,`name` ,`url` ,`isparent` ,`parentid` ,`index` ,`type` ,`show`,`icon`,`sysflag`  from sys_menu 
+	where  `parentid` = ${menuid} and `tbid` in 
+	(select DISTINCT(`menuid`) from sys_role_menu where `roleid` in
+	 	(select `roleid` from sys_user_role where `userid` = ${userid}) 
+	) order by `index` desc
+  </select>
+  
+  <select id="menusWithRole" resultType="SysMenu" >
+    select m.`tbid` ,m.`name` ,m.`url` ,m.`isparent` ,m.`parentid` ,m.`index` ,m.`type` ,m.`show`,m.`icon`,m.`sysflag` from sys_menu m,sys_role_menu rm 
+ 	where m.tbid = rm.menuid and m.`isparent` = 0 and rm.roleid = #{roleid}
+  </select>
+  
+</mapper>
